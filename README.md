@@ -17,7 +17,7 @@
 
 3.能根据亲密度排行自动整理出影像集并播放
 
-4.能保存下被拍摄者当时的声音或环境声响，并转写为文字
+4.能实时保存下身边好友的留言录音并转化为文字
 
 ### PRD3.核心价值与用户痛点 3%
 
@@ -33,7 +33,7 @@
 
 ### PRD4.人工智能概率性与用户痛点 3%
 
-* 人脸识别（阿里云）
+* 人脸识别（Azure）
 
 人脸图像过小会影响识别效果，人脸图像过大会影响识别速度。非专业人脸识别摄像头常见规定的最小识别人脸像素为60*60或100*100以上；在规定的图像大小内，算法更容易提升准确率和召回率；图像大小反映在实际应用场景就是人脸离摄像头的距离；过曝或过暗的光照环境都会影响人脸识别效果。根据阿里云提供的数据，除去特殊情况外，他们的人脸api精度>98%，这种概率符合被用户接收的最低标准。
 
@@ -77,3 +77,72 @@
 ## 原型 20%
 ## API 产品使用关键AI或机器学习之API的输出入展示 15%
 ### API1.使用水平 5%
+
+1.人脸比对，判断是否为同一个人（阿里云 人脸识别API）
+[点击此处体验阿里云ET体验馆](https://data.aliyun.com/ai?spm=5176.12127906.1357642..75e7cf823TWtL9#/face-comparison)
+
+- 输入：随意两张照片的url地址
+
+![邓紫棋1](https://gitee.com/NFUNM066/first/raw/master/%E9%82%93%E7%B4%AB%E6%A3%8B1.png)
+![邓紫棋2](https://gitee.com/NFUNM066/first/raw/master/%E9%82%93%E7%B4%AB%E6%A3%8B2.png)
+
+- 输出：结果显示是否为同一个人
+
+如果检测通过确定是同一个人则会显示
+![人脸比对](https://gitee.com/NFUNM066/first/raw/master/%E4%BA%BA%E8%84%B8%E6%AF%94%E5%AF%B9.png)
+如果不是同一个人则会显示
+![不是同一人](https://gitee.com/NFUNM066/first/raw/master/%E4%B8%8D%E6%98%AF%E5%90%8C%E4%B8%80%E4%BA%BA.png)
+
+
+2.识别被摄者情感信息（微软Azure 情感API）
+
+- 输入：照片url地址
+
+```
+
+import requests
+import json
+
+subscription_key = '8da6e0d5d7264123a6006287d2f29b13'   # 这里使用用户自己申请的Key
+assert subscription_key
+
+face_api_url = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect'
+
+image_url = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568229125854&di=4408ac30928b6d4b86be57a5ccdf3601&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201510%2F02%2F20151002220517_aWtBm.jpeg'      # 这里贴上相片链接
+
+headers = {'Ocp-Apim-Subscription-Key': '8da6e0d5d7264123a6006287d2f29b13'}
+
+params = {
+    'returnFaceId': 'true',
+    'returnFaceLandmarks': 'false',
+    'returnFaceAttributes': 'age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise',
+}
+
+response = requests.post(face_api_url, params=params,
+                         headers=headers, json={"url": image_url})
+print(json.dumps(response.json()))
+
+```
+
+- 输出：照片所包含的人物信息（包括情感、面部表情、头发颜色等细节）
+
+```
+
+[{"faceId": "1197910c-c37c-49bc-9c52-2bc14cbffead", "faceRectangle": {"top": 171, "left": 463, "width": 249, "height": 249}, 
+"faceAttributes": {"smile": 1.0, "headPose": {"pitch": -6.6, "roll": 2.7, "yaw": 2.1}, "gender": "female", "age": 21.0, "facialHair": 
+{"moustache": 0.0, "beard": 0.0, "sideburns": 0.0}, "glasses": "NoGlasses", "emotion": {"anger": 0.0, "contempt": 0.0, "disgust": 0.0, 
+"fear": 0.0, "happiness": 1.0, "neutral": 0.0, "sadness": 0.0, "surprise": 0.0}, "blur": {"blurLevel": "low", "value": 0.0}, "exposure": 
+{"exposureLevel": "goodExposure", "value": 0.68}, "noise": {"noiseLevel": "low", "value": 0.08}, "makeup": {"eyeMakeup": true, 
+"lipMakeup": true}, "accessories": [], "occlusion": {"foreheadOccluded": false, "eyeOccluded": false, "mouthOccluded": false}, "hair": 
+{"bald": 0.02, "invisible": false, "hairColor": [{"color": "red", "confidence": 0.96}, {"color": "other", "confidence": 0.92}, {"color": 
+"blond", "confidence": 0.51}, {"color": "gray", "confidence": 0.16}, {"color": "brown", "confidence": 0.15}, {"color": "black", 
+"confidence": 0.09}]}}}]
+
+```
+
+3.实时留言板功能（阿里云 实时语音转写API）
+[点击此处体验实时语音转写功能](https://ai.aliyun.com/nls/trans?spm=a2c4g.11186623.h2v3icoap.181.4f925fdbK6gzUj)
+
+- 输入：点击“开启录音”，对着麦克风说话
+
+
