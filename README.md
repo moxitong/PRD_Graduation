@@ -145,4 +145,12 @@ print(json.dumps(response.json()))
 
 - 输入：点击“开启录音”，对着麦克风说话
 
+![语音输入](https://gitee.com/NFUNM066/first/raw/master/%E8%AF%AD%E9%9F%B3%E8%BE%93%E5%85%A5.png)
 
+- 输出：把录音以文字形式保留下来
+
+![语音输入](https://gitee.com/NFUNM066/first/raw/master/%E8%AF%AD%E9%9F%B3%E8%BE%93%E5%87%BA.png)
+
+以下为总操作界面，实时录音的速度非常快：
+
+![语音输入](https://gitee.com/NFUNM066/first/raw/master/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB.png)
