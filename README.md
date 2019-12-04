@@ -1,9 +1,14 @@
 # API_ML_AI/毕业纪念APP
 
-|   产品名字  |   明年今日  |
+|   Title  |   Content  |
 | --- | --- |
-|    文件主人 |   莫熙彤  |
-|    文件设计者 |  莫熙彤   |
+|  Date(发布日期)  |  2019/12  |
+|   Epic(史诗名称) |   明年今日  |
+|    Document status(文档状态) |  进行中   |
+|  Document owner(文件主人)  |  莫熙彤  |
+|  Designer(领头的设计师)  |  莫熙彤  |
+|  Developer(领头的开发者)  |   莫熙彤  |
+|  QA(领头的测试者)  |  莫熙彤  |
 
 ## PRD 价值主张设计 15%
 
