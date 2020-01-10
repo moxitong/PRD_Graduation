@@ -122,7 +122,7 @@
 
 ![语音输入](https://gitee.com/NFUNM066/first/raw/master/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB.png)
 
-### API2API2使用比较分析
+### API2使用比较分析
 
 #### 1.人脸识别技术
 
